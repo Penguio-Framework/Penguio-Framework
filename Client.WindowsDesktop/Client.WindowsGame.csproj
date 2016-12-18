@@ -9,8 +9,8 @@
     <ProjectGuid>{979FF17B-490A-4A6C-B4B0-8B56009E2D56}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WindowsGame</RootNamespace>
-    <AssemblyName>WindowsGame</AssemblyName>
+    <RootNamespace>Client.WindowsGame</RootNamespace>
+    <AssemblyName>Client.WindowsGame</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>

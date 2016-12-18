@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WindowsGame
+namespace Client.WindowsGame
 {
 #if WINDOWS || LINUX
     /// <summary>
@@ -14,7 +14,7 @@ namespace WindowsGame
         [STAThread]
         static void Main()
         {
-            using (var game = new Client.GameClient())
+            using (var game = new GameClient())
                 game.Run();
         }
     }

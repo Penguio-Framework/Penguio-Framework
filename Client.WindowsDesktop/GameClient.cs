@@ -17,7 +17,7 @@ using ButtonState = Microsoft.Xna.Framework.Input.ButtonState;
 using Keys = Microsoft.Xna.Framework.Input.Keys;
 using Point = Microsoft.Xna.Framework.Point;
 
-namespace Client
+namespace Client.WindowsGame
 {
     public class GameClient : Game
     {
@@ -75,7 +75,7 @@ namespace Client
             {
 #endif
                 spriteBatch = new SpriteBatch(GraphicsDevice);
-                client = new XnaClient(new DemolitionRobots.Game(), new XnaClientSettings(getKeyboardInput: (callback) =>
+                client = new XnaClient({{{projectName}}}, new XnaClientSettings(getKeyboardInput: (callback) =>
                 {
                     callback("");
                 },
