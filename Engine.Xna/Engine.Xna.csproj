@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{329D3575-561C-4E12-A136-92399BC2D118}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Engine.Xna</RootNamespace>
+    <AssemblyName>Engine.Xna</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Engine\Engine.csproj">
+      <Project>{C3DA2EFF-23EA-4D3C-8AFD-534D650DAFCB}</Project>
+      <Name>Engine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MonoGame\v3.0\Assemblies\Android\MonoGame.Framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="fontMetrics.cs" />
+    <Compile Include="FontMetricsCharacter.cs" />
+    <Compile Include="Network\SocketError.cs" />
+    <Compile Include="Network\XnaSocket.cs" />
+    <Compile Include="Network\XnaSocketManager.cs" />
+    <Compile Include="Resolution.cs" />
+    <Compile Include="XnaAssetCache.cs" />
+    <Compile Include="XnaClient.cs" />
+    <Compile Include="XnaClientSettings.cs" />
+    <Compile Include="XnaContextSettings.cs" />
+    <Compile Include="XnaImage.cs" />
+    <Compile Include="XnaLayer.cs" />
+    <Compile Include="XnaLayout.cs" />
+    <Compile Include="XnaRenderer.cs" />
+    <Compile Include="XnaScreen.cs" />
+    <Compile Include="XnaScreenManager.cs" />
+    <Compile Include="XnaShapeCache.cs" />
+    <Compile Include="XnaSong.cs" />
+    <Compile Include="XnaSoundEffect.cs" />
+    <Compile Include="XnaSpriteFont.cs" />
+    <Compile Include="XnaUIManager.cs" />
+    <Compile Include="XnaUITextBox.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
