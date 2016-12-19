@@ -50,7 +50,7 @@ dist
 .tmp
 .sass-cache
 bower_components
-packages
+/packages
 workspace.xml
 
 .idea
