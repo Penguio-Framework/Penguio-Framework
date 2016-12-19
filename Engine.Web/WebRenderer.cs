@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Bridge;
 using Bridge.Html5;
 using Engine.Interfaces;
 
@@ -184,14 +185,17 @@ namespace Engine.Web
 
         public void DrawString(CanvasRenderingContext2D context, string text, PointF position, Color color, Point offset)
         {
+            CanvasInformation fic;
 
-            var fic = fontImageCaches[color.ToString()];
-
-            if (fic == null)
+            if (!fontImageCaches.ContainsKey(color.ToString()))
             {
                 fic = fontImageCaches[color.ToString()] = colorizeImage(((WebImage)Font).Image, color);
             }
-            
+            else
+            {
+                fic = fontImageCaches[color.ToString()];
+            }
+
             var imageElement = fic.Canvas;
 
             var fontDict = FontDict;
@@ -214,11 +218,15 @@ namespace Engine.Web
         }
         public void DrawCenteredString(CanvasRenderingContext2D context, string text, PointF position, Color color, PointF offset)
         {
-            var fic = fontImageCaches[color.ToString()];
+            CanvasInformation fic;
 
-            if (fic == null)
+            if (!fontImageCaches.ContainsKey(color.ToString()))
             {
-                fic = fontImageCaches[color.ToString()] = colorizeImage(((WebImage)Font).Image, color);
+                fic = fontImageCaches[color.ToString()] = colorizeImage(((WebImage) Font).Image, color);
+            }
+            else
+            {
+                fic = fontImageCaches[color.ToString()];
             }
 
             var imageElement = fic.Canvas;
@@ -276,11 +284,13 @@ namespace Engine.Web
         int kerning = 0;
     }
 
+    [ObjectLiteral]
     public class fontMetrics
     {
         public FontMetricsCharacter[] character { get; set; }
         public string file { get; set; }
     }
+    [ObjectLiteral]
     public class FontMetricsCharacter
     {
         public string x { get; set; }

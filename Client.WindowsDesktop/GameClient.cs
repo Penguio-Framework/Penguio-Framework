@@ -38,8 +38,8 @@ namespace Client.WindowsGame
             IsMouseVisible = true;
             TouchPanel.EnableMouseTouchPoint = true;
 
-            graphics.PreferredBackBufferWidth = 1536;
-            graphics.PreferredBackBufferHeight = 2048;
+            graphics.PreferredBackBufferWidth = 1536/2;
+            graphics.PreferredBackBufferHeight = 2048/2;
         }
 
         protected override void Initialize()

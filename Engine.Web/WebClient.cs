@@ -34,8 +34,8 @@ namespace Engine.Web
             ScreenManager = new WebScreenManager(Renderer, this);
             Game.InitScreens(renderer, ScreenManager);
 
-   /*         SocketManager = new WebSocketManager();
-            Game.InitSocketManager(SocketManager);*/
+            /*         SocketManager = new WebSocketManager();
+                     Game.InitSocketManager(SocketManager);*/
         }
 
 
@@ -71,61 +71,53 @@ namespace Engine.Web
 
         public void PlaySong(ISong isong)
         {
-            throw new NotImplementedException();
+            //            MediaPlayer.Stop();
+            //            var song = ((XnaSong)songs[songName]).Song;
+            //            MediaPlayer.IsRepeating = true;
+            //            MediaPlayer.Play(song);
         }
 
-        public ISoundEffect PlaySoundEffect(ISoundEffect isfx, bool repeat = false)
+        public ISoundEffect PlaySoundEffect(ISoundEffect sfx, bool repeat = false)
         {
-            throw new NotImplementedException();
+
+            //            var sfx = ((XnaSoundEffect)soundEffects[soundEffectName]);
+            //            if (SoundEnabled)
+            //            {
+            //                sfx.Play(repeat);
+            //            }
+            //            return sfx;
+            return sfx;
         }
 
         private readonly Dictionary<string, ISoundEffect> soundEffects = new Dictionary<string, ISoundEffect>();
         private readonly Dictionary<string, ISong> songs = new Dictionary<string, ISong>();
 
-        public void PlaySong(string songName)
-        {
-//            MediaPlayer.Stop();
-//            var song = ((XnaSong)songs[songName]).Song;
-//            MediaPlayer.IsRepeating = true;
-//            MediaPlayer.Play(song);
-        }
-
-        public ISoundEffect PlaySoundEffect(string soundEffectName, bool repeat = false)
-        {
-//            var sfx = ((XnaSoundEffect)soundEffects[soundEffectName]);
-//            if (SoundEnabled)
-//            {
-//                sfx.Play(repeat);
-//            }
-//            return sfx;
-            return null;
-        }
-
+   
 
 
         public ISoundEffect CreateSoundEffect(string soundName, string soundPath)
         {
-//            var se = ContentManager.Load<SoundEffect>(soundPath);
-//            return soundEffects[soundName] = new XnaSoundEffect(se);
+            //            var se = ContentManager.Load<SoundEffect>(soundPath);
+            //            return soundEffects[soundName] = new XnaSoundEffect(se);
             return null;
         }
 
         public ISong CreateSong(string songName, string songPath)
         {
-//            var se = ContentManager.Load<Song>(songPath);
-//            return songs[songName] = new XnaSong(se);
+            //            var se = ContentManager.Load<Song>(songPath);
+            //            return songs[songName] = new XnaSong(se);
             return null;
         }
 
 
         public void DrawLetterbox()
         {
-//            throw new NotImplementedException();
+            //            throw new NotImplementedException();
         }
 
         public void ShowKeyboard()
         {
-//            throw new NotImplementedException();
+            //            throw new NotImplementedException();
         }
 
         public IUserPreferences UserPreferences { get; private set; }
@@ -153,14 +145,14 @@ namespace Engine.Web
             var json = loadTextFileAjaxSync(filePath, "application/json");
             var loadJson = JSON.Parse<T>(json);
             return loadJson;
-/*
-            foreach (var cc in  loadJson)
-            {
-                return Script.Reinterpret<T>(cc.Value);
-            }
+            /*
+                        foreach (var cc in  loadJson)
+                        {
+                            return Script.Reinterpret<T>(cc.Value);
+                        }
 
-            return default(T);
-*/
+                        return default(T);
+            */
 
         }
 

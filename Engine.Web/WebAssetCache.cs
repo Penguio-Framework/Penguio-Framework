@@ -22,7 +22,7 @@ namespace Engine.Web
         }
         public IImage CreateImage(string imageName, string imagePath, PointF center, Action ready)
         {
-            return textures[imageName] = new WebImage(imagePath+".png", center, ready);
+            return textures[imageName] = new WebImage("assets/"+imagePath+".png", center, ready);
         }
 
         public WebSpriteFont GetFont(string fontName)
@@ -32,7 +32,7 @@ namespace Engine.Web
 
         public IFont CreateFont(string fontName, string fontPath)
         {
-            var fileName =  fontPath + ".xml";
+            var fileName =  "assets/"+fontPath + ".xml";
             fontMetrics j = client.ClientSettings.LoadXmlFile<fontMetrics>(fileName);
 
             var assetName =  fontPath;
