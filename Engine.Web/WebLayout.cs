@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Html;
+using Bridge.Html5;
 using Engine.Interfaces;
 
 namespace Engine.Web
@@ -16,7 +16,7 @@ namespace Engine.Web
         public ScreenOrientation ScreenOrientation { get; set; }
         public bool AlwaysTick { get; set; }
 
-        public DivElement Element { get; set; }
+        public HTMLDivElement Element { get; set; }
         public WebLayout(IScreen screen, int width, int height)
         {
             Screen = screen;
@@ -26,7 +26,7 @@ namespace Engine.Web
             ScreenOrientation = ScreenOrientation.Vertical;
             LayoutPosition = new LayoutPosition(new Size(width, height));
 
-            Element = (DivElement)Document.CreateElement("div");
+            Element = (HTMLDivElement)Document.CreateElement("div");
 
             UIManager = new WebUIManager(this);
         }

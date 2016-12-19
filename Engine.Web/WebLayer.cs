@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Html;
 using System.Runtime.CompilerServices;
 using Engine.Interfaces;
 
@@ -13,7 +12,6 @@ namespace Engine.Web
         private readonly int height;
         public ILayout Layout { get; set; }
 
-        [IntrinsicProperty]
         public CanvasInformation CanvasInformation { get; set; }
         public WebLayer(WebRenderer renderer, int width, int height, ILayout layout)
         {
@@ -30,7 +28,7 @@ namespace Engine.Web
 
         public void SetDrawingTransparency(double alpha)
         {
-            CanvasInformation.Context.GlobalAlpha = alpha;
+            CanvasInformation.Context.GlobalAlpha =(float) alpha;
         }
 
         public void Begin()

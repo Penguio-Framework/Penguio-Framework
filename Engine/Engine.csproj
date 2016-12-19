@@ -86,8 +86,5 @@
     <Compile Include="TouchTrigger.cs" />
     <Compile Include="TouchType.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Engine.Saltarelle.csproj" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

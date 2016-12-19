@@ -1,20 +1,21 @@
 using System;
 using System.Collections.Generic;
-using System.Html;
+using Bridge.Html5;
 using Engine.Interfaces;
+using Direction = Engine.Interfaces.Direction;
 
 namespace Engine.Web
 {
     public class WebScreen : IScreen
     {
-        public DivElement Element { get; set; }
+        public HTMLDivElement Element { get; set; }
 
         public WebScreen(WebScreenManager webScreenManager)
         {
             ScreenManager = webScreenManager;
 
             WebLayouts = new List<WebLayout>();
-            Element = (DivElement)Document.CreateElement("div");
+            Element = (HTMLDivElement)Document.CreateElement("div");
         }
 
         public void Destroy()

@@ -10,11 +10,11 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C44B411B-B7C7-422D-ABF1-92BED9D2CF2A}</ProjectGuid>
+    <ProjectGuid>{E3F31E22-AF3C-4AE8-A219-6628B05A656B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Engine.Web</RootNamespace>
-    <AssemblyName>Engine.Web</AssemblyName>
+    <RootNamespace>WebGame</RootNamespace>
+    <AssemblyName>WebGame</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -36,48 +36,33 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CanvasInformation.cs" />
-    <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebAssetCache.cs" />
-    <Compile Include="WebClient.cs" />
-    <Compile Include="WebImage.cs" />
-    <Compile Include="WebImageCache.cs" />
-    <Compile Include="WebLayer.cs" />
-    <Compile Include="WebLayout.cs" />
-    <Compile Include="WebRenderer.cs" />
-    <Compile Include="WebScreen.cs" />
-    <Compile Include="WebScreenManager.cs" />
+    <Compile Include="WebUserPreferences.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Bridge\bridge.json" />
-    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dlls\Bridge.dll" />
+    <Content Include="dlls\Bridge.Html5.dll" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Bridge, Version=15.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bridge.Core.15.6.0\lib\net40\Bridge.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\Bridge.dll</HintPath>
     </Reference>
     <Reference Include="Bridge.Html5, Version=15.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bridge.Html5.15.6.0\lib\net40\Bridge.Html5.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\Bridge.Html5.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Network\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Engine.Bridge\Engine.Bridge.csproj">
-      <Project>{2ede8897-e866-4d4a-9258-6560a316aa75}</Project>
-      <Name>Engine.Bridge</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Bridge.Min.15.6.0\build\Bridge.Min.targets" Condition="Exists('..\packages\Bridge.Min.15.6.0\build\Bridge.Min.targets')" />
+  <Import Project=".\packages\Bridge.Min.15.6.0\build\Bridge.Min.targets" Condition="Exists('.\packages\Bridge.Min.15.6.0\build\Bridge.Min.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Bridge.Min.15.6.0\build\Bridge.Min.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Bridge.Min.15.6.0\build\Bridge.Min.targets'))" />
+    <Error Condition="!Exists('.\packages\Bridge.Min.15.6.0\build\Bridge.Min.targets')" Text="$([System.String]::Format('$(ErrorText)', '.\packages\Bridge.Min.15.6.0\build\Bridge.Min.targets'))" />
   </Target>
 </Project>

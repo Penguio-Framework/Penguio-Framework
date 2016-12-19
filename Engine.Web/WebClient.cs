@@ -1,11 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Html.Media.Audio;
 using System.Net;
-using System.Serialization;
-using System.Xml;
-using Engine.Web.Network;
+using Bridge.Html5;
 using Engine.Interfaces;
 
 namespace Engine.Web
@@ -37,8 +34,8 @@ namespace Engine.Web
             ScreenManager = new WebScreenManager(Renderer, this);
             Game.InitScreens(renderer, ScreenManager);
 
-            SocketManager = new WebSocketManager();
-            Game.InitSocketManager(SocketManager);
+   /*         SocketManager = new WebSocketManager();
+            Game.InitSocketManager(SocketManager);*/
         }
 
 
@@ -70,7 +67,6 @@ namespace Engine.Web
         public void Interval(Action callback, int ms)
         {
             Window.SetInterval(callback, ms);
-
         }
 
         public void PlaySong(ISong isong)
@@ -155,7 +151,7 @@ namespace Engine.Web
         private T loadJSON<T>(string filePath)
         {
             var json = loadTextFileAjaxSync(filePath, "application/json");
-            var loadJson = Json.Parse<T>(json);
+            var loadJson = JSON.Parse<T>(json);
             return loadJson;
 /*
             foreach (var cc in  loadJson)
@@ -170,7 +166,7 @@ namespace Engine.Web
 
         private string loadTextFileAjaxSync(string filePath, string mimeType)
         {
-            var xmlhttp = new XmlHttpRequest();
+            var xmlhttp = new XMLHttpRequest();
             xmlhttp.Open("GET", filePath, false);
             if (mimeType != null)
             {

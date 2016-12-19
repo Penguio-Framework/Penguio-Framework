@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Html;
-using System.Html.Media.Graphics;
 using System.Runtime.CompilerServices;
+using Bridge.Html5;
 using Engine.Interfaces;
 
 namespace Engine.Web
@@ -23,19 +22,19 @@ namespace Engine.Web
             layers = new List<WebLayer>();
             assetCache = new WebAssetCache(client);
 
-            ClickManager = (DivElement)Document.CreateElement("div");
+            ClickManager = (HTMLDivElement)Document.CreateElement("div");
             ClickManager.ClassName = "clickManager";
             ClickManager.Style.Width = "1000px";
             ClickManager.Style.Height = "1000px";
-            ClickManager.OnMousedown = (e) =>
+            ClickManager.OnMouseDown = (e) =>
             {
                 client.TouchEvent(TouchType.TouchDown, ((dynamic)e).pageX - ((dynamic)e).target.offsetLeft, ((dynamic)e).pageY - ((dynamic)e).target.offsetTop);
             };
-            ClickManager.OnMousemove = (e) =>
+            ClickManager.OnMouseMove = (e) =>
             {
                 client.TouchEvent(TouchType.TouchMove, ((dynamic)e).pageX - ((dynamic)e).target.offsetLeft, ((dynamic)e).pageY - ((dynamic)e).target.offsetTop);
             };
-            ClickManager.OnMouseup = (e) =>
+            ClickManager.OnMouseUp = (e) =>
             {
                 client.TouchEvent(TouchType.TouchUp, ((dynamic)e).pageX - ((dynamic)e).target.offsetLeft, ((dynamic)e).pageY - ((dynamic)e).target.offsetTop);
             };
@@ -67,7 +66,7 @@ namespace Engine.Web
 
         private int numberOfImages;
         private int numberOfImagesLoaded;
-        public DivElement ClickManager { get; set; }
+        public HTMLDivElement ClickManager { get; set; }
 
         public IImage CreateImage(string imageName, string imagePath, PointF center = null)
         {
@@ -181,7 +180,7 @@ namespace Engine.Web
         }
 
 
-        private JsDictionary<string, CanvasInformation> fontImageCaches = new JsDictionary<string, CanvasInformation>();
+        private Dictionary<string, CanvasInformation> fontImageCaches = new Dictionary<string, CanvasInformation>();
 
         public void DrawString(CanvasRenderingContext2D context, string text, PointF position, Color color, Point offset)
         {
@@ -252,7 +251,7 @@ namespace Engine.Web
             }
         }
 
-        private CanvasInformation colorizeImage(ImageElement img, Color color)
+        private CanvasInformation colorizeImage(HTMLImageElement img, Color color)
         {
             var canvas = CanvasInformation.Create(img.Width, img.Height);
 
@@ -277,13 +276,11 @@ namespace Engine.Web
         int kerning = 0;
     }
 
-    [Serializable]
     public class fontMetrics
     {
         public FontMetricsCharacter[] character { get; set; }
         public string file { get; set; }
     }
-    [Serializable]
     public class FontMetricsCharacter
     {
         public string x { get; set; }

@@ -1,17 +1,15 @@
-using System.Html;
-using System.Html.Media.Graphics;
+
 using System.Runtime.CompilerServices;
+using Bridge.Html5;
 
 namespace Engine.Web
 {
     public class CanvasInformation
     {
-        private static CanvasElement blackPixel;
-        [IntrinsicProperty]
+        private static HTMLCanvasElement blackPixel;
         public CanvasRenderingContext2D Context { get; set; }
-        [IntrinsicProperty]
-        public CanvasElement Canvas { get; set; }
-        public static CanvasElement BlackPixel
+        public HTMLCanvasElement Canvas { get; set; }
+        public static HTMLCanvasElement BlackPixel
         {
             get
             {
@@ -28,7 +26,7 @@ namespace Engine.Web
             }
         }
 
-        public CanvasInformation(CanvasRenderingContext2D context, CanvasElement domCanvas)
+        public CanvasInformation(CanvasRenderingContext2D context, HTMLCanvasElement domCanvas)
         {
             Context = context;
             Canvas = domCanvas;
@@ -36,11 +34,11 @@ namespace Engine.Web
 
         public static CanvasInformation Create(int w, int h)
         {
-            var canvas = (CanvasElement)Document.CreateElement("canvas");
+            var canvas = (HTMLCanvasElement)Document.CreateElement("canvas");
             return Create(canvas, w, h);
         }
 
-        public static CanvasInformation Create(CanvasElement canvas, int w, int h)
+        public static CanvasInformation Create(HTMLCanvasElement canvas, int w, int h)
         {
             if (w == 0) w = 1;
             if (h == 0) h = 1;

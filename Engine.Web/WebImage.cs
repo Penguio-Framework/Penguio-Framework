@@ -1,19 +1,18 @@
 using System;
 using System.Collections.Generic;
-using System.Html;
 using System.Runtime.CompilerServices;
+using Bridge.Html5;
 using Engine.Interfaces;
 
 namespace Engine.Web
 {
     public class WebImage : IImage
     {
-        [IntrinsicProperty]
-        public ImageElement Image { get; set; }
+        public HTMLImageElement Image { get; set; }
 
         public WebImage(string imagePath, PointF center, Action ready)
         {
-            ImageElement image = new ImageElement();
+            HTMLImageElement image = new HTMLImageElement();
             image.Src = imagePath;
             Image = image;
             image.OnLoad = (e) =>
@@ -25,10 +24,10 @@ namespace Engine.Web
                 ready();
             };
         }
-        public WebImage(CanvasElement canvas, PointF center)
+        public WebImage(HTMLCanvasElement canvas, PointF center)
         {
 
-            ImageElement image = new ImageElement();
+            HTMLImageElement image = new HTMLImageElement();
             image.Src = canvas.ToDataURL();
             Image = image;
 

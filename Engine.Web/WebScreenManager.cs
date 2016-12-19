@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Bridge.Html5;
 using Engine.Interfaces;
 
 namespace Engine.Web
@@ -98,7 +99,7 @@ namespace Engine.Web
             Renderer.ClickManager.Style.Height = size.Height + "px";
             foreach (WebLayout layout in CurrentScreen.Layouts)
             {
-                layout.Element.Style.Position = "absolute";
+                layout.Element.Style.Position = Position.Absolute;
                 layout.Element.Style.Left = layout.LayoutPosition.Location.X + "px";
                 layout.Element.Style.Top = layout.LayoutPosition.Location.Y + "px";
                 layout.Element.Style.Width = layout.LayoutPosition.Location.Width + "px";

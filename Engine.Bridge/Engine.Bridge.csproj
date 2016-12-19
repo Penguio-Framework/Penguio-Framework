@@ -10,11 +10,11 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C44B411B-B7C7-422D-ABF1-92BED9D2CF2A}</ProjectGuid>
+    <ProjectGuid>{2EDE8897-E866-4D4A-9258-6560A316AA75}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Engine.Web</RootNamespace>
-    <AssemblyName>Engine.Web</AssemblyName>
+    <RootNamespace>Engine.Bridge</RootNamespace>
+    <AssemblyName>Engine.Bridge</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -36,18 +36,52 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CanvasInformation.cs" />
-    <Compile Include="EnumerableExtensions.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebAssetCache.cs" />
-    <Compile Include="WebClient.cs" />
-    <Compile Include="WebImage.cs" />
-    <Compile Include="WebImageCache.cs" />
-    <Compile Include="WebLayer.cs" />
-    <Compile Include="WebLayout.cs" />
-    <Compile Include="WebRenderer.cs" />
-    <Compile Include="WebScreen.cs" />
-    <Compile Include="WebScreenManager.cs" />
+    <Compile Include="..\Engine\Animation\AnimationEasing.cs" />
+    <Compile Include="..\Engine\Animation\AnimationMotion.cs" />
+    <Compile Include="..\Engine\Animation\IMotion.cs" />
+    <Compile Include="..\Engine\Animation\MotionManager.cs" />
+    <Compile Include="..\Engine\Animation\OnRender.cs" />
+    <Compile Include="..\Engine\Animation\OnRenderAnimationIndex.cs" />
+    <Compile Include="..\Engine\Animation\WaitMotion.cs" />
+    <Compile Include="..\Engine\Color.cs" />
+    <Compile Include="..\Engine\EnumerableExtensions.cs" />
+    <Compile Include="..\Engine\Interfaces\AssetManager.cs" />
+    <Compile Include="..\Engine\Interfaces\Direction.cs" />
+    <Compile Include="..\Engine\Interfaces\DragGesture.cs" />
+    <Compile Include="..\Engine\Interfaces\DragGestureManager.cs" />
+    <Compile Include="..\Engine\Interfaces\DrawingEffects.cs" />
+    <Compile Include="..\Engine\Interfaces\IClient.cs" />
+    <Compile Include="..\Engine\Interfaces\IClientSettings.cs" />
+    <Compile Include="..\Engine\Interfaces\IGame.cs" />
+    <Compile Include="..\Engine\Interfaces\IImage.cs" />
+    <Compile Include="..\Engine\Interfaces\ILayer.cs" />
+    <Compile Include="..\Engine\Interfaces\ILayout.cs" />
+    <Compile Include="..\Engine\Interfaces\ILayoutView.cs" />
+    <Compile Include="..\Engine\Interfaces\IRenderer.cs" />
+    <Compile Include="..\Engine\Interfaces\IScreen.cs" />
+    <Compile Include="..\Engine\Interfaces\IScreenManager.cs" />
+    <Compile Include="..\Engine\Interfaces\IScreenView.cs" />
+    <Compile Include="..\Engine\Interfaces\ISong.cs" />
+    <Compile Include="..\Engine\Interfaces\ISoundEffect.cs" />
+    <Compile Include="..\Engine\Interfaces\ITouchManager.cs" />
+    <Compile Include="..\Engine\Interfaces\IUIManager.cs" />
+    <Compile Include="..\Engine\Interfaces\IUITextBox.cs" />
+    <Compile Include="..\Engine\Interfaces\IUserPreferences.cs" />
+    <Compile Include="..\Engine\Interfaces\TouchPoint.cs" />
+    <Compile Include="..\Engine\LayoutPosition.cs" />
+    <Compile Include="..\Engine\Network\ISocket.cs" />
+    <Compile Include="..\Engine\Network\ISocketError.cs" />
+    <Compile Include="..\Engine\Network\ISocketManager.cs" />
+    <Compile Include="..\Engine\Point.cs" />
+    <Compile Include="..\Engine\PointF.cs" /> 
+    <Compile Include="..\Engine\Rectangle.cs" />
+    <Compile Include="..\Engine\ScreenOrientation.cs" />
+    <Compile Include="..\Engine\Size.cs" />
+    <Compile Include="..\Engine\SwipeTrigger.cs" />
+    <Compile Include="..\Engine\TouchManager.cs" />
+    <Compile Include="..\Engine\TouchRect.cs" />
+    <Compile Include="..\Engine\TouchTrigger.cs" />
+    <Compile Include="..\Engine\TouchType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Bridge\bridge.json" />
@@ -62,15 +96,6 @@
       <HintPath>..\packages\Bridge.Html5.15.6.0\lib\net40\Bridge.Html5.dll</HintPath>
       <Private>True</Private>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Network\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Engine.Bridge\Engine.Bridge.csproj">
-      <Project>{2ede8897-e866-4d4a-9258-6560a316aa75}</Project>
-      <Name>Engine.Bridge</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Bridge.Min.15.6.0\build\Bridge.Min.targets" Condition="Exists('..\packages\Bridge.Min.15.6.0\build\Bridge.Min.targets')" />

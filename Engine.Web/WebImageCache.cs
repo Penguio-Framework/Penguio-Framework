@@ -7,14 +7,14 @@ namespace Engine.Web
     public class WebImageCache
     {
         private readonly IClient client;
-        private readonly JsDictionary<string, WebImage> textures;
-        private readonly JsDictionary<string, WebSpriteFont> fonts;
+        private readonly Dictionary<string, WebImage> textures;
+        private readonly Dictionary<string, WebSpriteFont> fonts;
 
         public WebImageCache(IClient client)
         {
             this.client = client;
-            textures = new JsDictionary<string, WebImage>();
-            fonts = new JsDictionary<string, WebSpriteFont>();
+            textures = new Dictionary<string, WebImage>();
+            fonts = new Dictionary<string, WebSpriteFont>();
         }
         public WebImage GetImage(string imageName)
         {

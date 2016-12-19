@@ -1,6 +1,6 @@
 using System;
 
-namespace Engine.Xna.Network
+namespace Engine.Web.Network
 {
     internal class SocketError : ISocketError
     {
