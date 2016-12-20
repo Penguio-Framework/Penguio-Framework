@@ -27,7 +27,7 @@ namespace Client.Web
             },new WebUserPreferences());
 
             renderer = new WebRenderer(client, finishedLoadingImages);
-            client.LoadImages(renderer);
+            client.LoadAssets(renderer);
             renderer.DoneLoadingAssets();
 
             int index = 0;

@@ -63,14 +63,15 @@ namespace Engine.Xna
             Game.Client = this;
         }
 
-        public void LoadImages(IRenderer renderer)
+        public void LoadAssets(IRenderer renderer)
         {
+            Game.AssetManager = new AssetManager(renderer, this);
             Game.LoadAssets(renderer);
         }
 
         public void Init(IRenderer renderer)
         {
-            Renderer = (XnaRenderer) renderer;
+            Renderer = (XnaRenderer)renderer;
             ScreenManager = new XnaScreenManager(Renderer, this);
             Game.InitScreens(renderer, ScreenManager);
             DragDragGestureManager = new DragGestureManager();
@@ -109,36 +110,36 @@ namespace Engine.Xna
                     overlaySpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, null, null, null, null, scaleMatrix);
 
                     var location = new Vector2();
-                    var quarter = Math.PI*2/4;
-                    var distance = (float) dragGesture.Distance/(float) DragGestureManager.TriggerDistance;
+                    var quarter = Math.PI * 2 / 4;
+                    var distance = (float)dragGesture.Distance / (float)DragGestureManager.TriggerDistance;
                     float angle = 0;
                     var size = ScreenManager.CurrentScreen.GetLayoutSize();
                     switch (dragGesture.Direction)
                     {
                         case Direction.Left:
-                            angle = (float) (quarter*3);
+                            angle = (float)(quarter * 3);
                             location.X = 50;
-                            location.Y = size.Height/2;
+                            location.Y = size.Height / 2;
                             break;
                         case Direction.Right:
-                            angle = (float) (quarter*1);
+                            angle = (float)(quarter * 1);
                             location.X = size.Width - 50;
-                            location.Y = size.Height/2;
+                            location.Y = size.Height / 2;
                             break;
                         case Direction.Up:
                             angle = 0;
-                            location.X = size.Width/2;
+                            location.X = size.Width / 2;
                             location.Y = 50;
                             break;
                         case Direction.Down:
-                            angle = (float) (quarter*2);
-                            location.X = size.Width/2;
+                            angle = (float)(quarter * 2);
+                            location.X = size.Width / 2;
                             location.Y = size.Height - 50;
                             break;
                     }
 
-                    var xnaImage = ((XnaImage) Renderer.GetImage("overlay.arrow"));
-                    overlaySpriteBatch.Draw(xnaImage.Texture, location, null, Microsoft.Xna.Framework.Color.White*distance, angle, new Vector2((float) xnaImage.Center.X, (float) xnaImage.Center.Y), 1, SpriteEffects.None, 1);
+                    var xnaImage = ((XnaImage)Renderer.GetImage("overlay.arrow"));
+                    overlaySpriteBatch.Draw(xnaImage.Texture, location, null, Microsoft.Xna.Framework.Color.White * distance, angle, new Vector2((float)xnaImage.Center.X, (float)xnaImage.Center.Y), 1, SpriteEffects.None, 1);
                     overlaySpriteBatch.End();
                 }
             }
@@ -177,8 +178,8 @@ namespace Engine.Xna
             y -= point.Y;
 
 
-            x = (int) (x/matrix.Right.Length());
-            y = (int) (y/matrix.Down.Length());
+            x = (int)(x / matrix.Right.Length());
+            y = (int)(y / matrix.Down.Length());
 
 
             ScreenManager.TouchEvent(touchType, x, y);
@@ -208,11 +209,11 @@ namespace Engine.Xna
                 {
                     var size = Renderer.GetScreenSize();
                     var point = Renderer.GetOffset();
-                    var width = (point.X == 0 ? size.X : point.X)+6;
+                    var width = (point.X == 0 ? size.X : point.X) + 6;
                     var height = (point.Y == 0 ? size.Y : point.Y) + 4;
                     letterboxTexture = new Texture2D(Renderer.graphicsDevice, width, height);
                     var xnaColor = new Microsoft.Xna.Framework.Color(0, 0, 0);
-                    var data = new Microsoft.Xna.Framework.Color[width*height];
+                    var data = new Microsoft.Xna.Framework.Color[width * height];
                     for (var i = 0; i < data.Length; ++i) data[i] = xnaColor;
                     letterboxTexture.SetData(data);
                 }
@@ -237,7 +238,7 @@ namespace Engine.Xna
             var song = ((XnaSong)isong).Song;
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(song);
-        } 
+        }
 
         public ISoundEffect PlaySoundEffect(ISoundEffect isfx, bool repeat = false)
         {
@@ -248,7 +249,7 @@ namespace Engine.Xna
             }
             return sfx;
         }
-         
+
 
 
         public ISoundEffect CreateSoundEffect(string soundName, string soundPath)

@@ -22,7 +22,7 @@ namespace Engine.Web
         }
         public IImage CreateImage(string imageName, string imagePath, PointF center, Action ready)
         {
-            return textures[imageName] = new WebImage("assets/"+imagePath+".png", center, ready);
+            return textures[imageName] = new WebImage("assets/images/"+imagePath+".png", center, ready);
         }
 
         public WebSpriteFont GetFont(string fontName)

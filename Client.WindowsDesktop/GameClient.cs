@@ -89,7 +89,7 @@ namespace Client.WindowsGame
                 }, new WindowsUserPreferences(), Content);
 
                 renderer = new XnaRenderer(GraphicsDevice, Content, graphics, client);
-                client.LoadImages(renderer);
+                client.LoadAssets(renderer);
 
                 client.Init(renderer);
 #if CATCHERROR

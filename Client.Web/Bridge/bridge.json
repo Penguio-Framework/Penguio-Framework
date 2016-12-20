@@ -1,9 +1,9 @@
 {
-    "output": "bin/output/js"
-    
-    // Uncomment to add TypeScript Definition file (.d.ts) generation to your project.
-    // , "generateTypeScript": true
+  "output": "bin/output/js",
+  "outputBy": "Project" 
+  // Uncomment to add TypeScript Definition file (.d.ts) generation to your project.
+  // , "generateTypeScript": true
 
-    // More options available at: 
-    // http://bridge.net/docs/global-configuration
+  // More options available at:
+  // http://bridge.net/docs/global-configuration
 }

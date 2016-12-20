@@ -35,8 +35,8 @@ namespace Engine.Xna
             var assetName = imagePath;
             Texture2D texture2D = null;
             
-            texture2D = content.Load<Texture2D>(assetName);
-            
+            texture2D = content.Load<Texture2D>("images/"+assetName);
+
             var xnaImage = new XnaImage(texture2D, center);
             textures.Add(imageName, xnaImage);
             return xnaImage;

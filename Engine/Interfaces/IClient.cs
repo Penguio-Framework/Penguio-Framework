@@ -10,7 +10,7 @@ namespace Engine.Interfaces
         DragGestureManager DragDragGestureManager { get; set; }
         bool SoundEnabled { get; set; }
         IUserPreferences UserPreferences { get; }
-        void LoadImages(IRenderer renderer);
+        void LoadAssets(IRenderer renderer);
         void Init(IRenderer renderer);
         void Draw(TimeSpan elapsedGameTime);
         void TouchEvent(TouchType touchType, int x, int y);

@@ -122,8 +122,9 @@ namespace Engine.Web
 
         public IUserPreferences UserPreferences { get; private set; }
 
-        public void LoadImages(IRenderer renderer)
+        public void LoadAssets(IRenderer renderer)
         {
+            Game.AssetManager=new AssetManager(renderer,this);
             Game.LoadAssets(renderer);
         }
     }
