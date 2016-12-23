@@ -57,9 +57,7 @@ namespace Client.WindowsGame
             txt.Font = new Font(txt.Font.FontFamily, 15);
             txt.WordWrap = false;
             txt.ScrollBars = ScrollBars.Both;
-            txt.Left = txt.Top = 0;
-            txt.Width = form.Width - 50;
-            txt.Height = form.Height - 50;
+            txt.Dock=DockStyle.Fill;
             txt.Text = exc.ToString();
             form.Controls.Add(txt);
             form.FormClosed += (sender, args) => this.Exit();

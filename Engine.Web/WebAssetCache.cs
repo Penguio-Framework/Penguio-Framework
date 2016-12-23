@@ -36,7 +36,7 @@ namespace Engine.Web
             fontMetrics j = client.ClientSettings.LoadXmlFile<fontMetrics>(fileName);
 
             var assetName =  fontPath;
-            var font = CreateImage(fontName, assetName, new PointF(0, 0), () => { });
+            var font = CreateImage(fontName, "../"+assetName, new PointF(0, 0), () => { });
 
             return fonts[fontName] = new WebSpriteFont(font, j);
         }
