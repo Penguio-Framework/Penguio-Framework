@@ -200,7 +200,15 @@ namespace Engine.Xna
             letterboxSpriteBatch.End();
         }
 
+        public void SetCustomLetterbox(IImage image)
+        {
+            var xnaImage = ((XnaImage)image);
+            customLetterboxTexture = xnaImage.Texture;
+            letterboxTexture = null;
+        }
+
         private Texture2D letterboxTexture;
+        private Texture2D customLetterboxTexture;
 
         public Texture2D LetterboxTexture
         {
@@ -213,9 +221,37 @@ namespace Engine.Xna
                     var width = (point.X == 0 ? size.X : point.X) + 6;
                     var height = (point.Y == 0 ? size.Y : point.Y) + 4;
                     letterboxTexture = new Texture2D(Renderer.graphicsDevice, width, height);
-                    var xnaColor = new Microsoft.Xna.Framework.Color(0, 0, 0);
+
+
                     var data = new Microsoft.Xna.Framework.Color[width * height];
-                    for (var i = 0; i < data.Length; ++i) data[i] = xnaColor;
+                    if (customLetterboxTexture == null)
+                    {
+                        var xnaColor = new Microsoft.Xna.Framework.Color(0, 0, 0);
+                        for (var i = 0; i < data.Length; ++i) data[i] = xnaColor;
+                    }
+                    else
+                    {
+                        var customData = new Microsoft.Xna.Framework.Color[customLetterboxTexture.Width * customLetterboxTexture.Height];
+                        customLetterboxTexture.GetData(customData);
+                        for (int x = 0; x < width; x += customLetterboxTexture.Width)
+                        {
+                            for (int y = 0; y < height; y += customLetterboxTexture.Height)
+                            {
+
+                                for (int cX = 0; cX < customLetterboxTexture.Width; cX++)
+                                {
+                                    for (int cY = 0; cY < customLetterboxTexture.Height; cY++)
+                                    {
+                                        if ((x + cX) + (y + cY) * width < data.Length)
+                                        {
+                                            data[(x + cX) + (y + cY) * width] = customData[cX + cY * customLetterboxTexture.Width];
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     letterboxTexture.SetData(data);
                 }
                 return letterboxTexture;

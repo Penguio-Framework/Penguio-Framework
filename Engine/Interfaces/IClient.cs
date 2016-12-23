@@ -21,6 +21,8 @@ namespace Engine.Interfaces
         ISoundEffect PlaySoundEffect(ISoundEffect isfx, bool repeat = false);
         ISoundEffect CreateSoundEffect(string soundName, string soundPath);
         ISong CreateSong(string SongName, string SongPath);
+
         void DrawLetterbox();
+        void SetCustomLetterbox(IImage image);
     }
 }

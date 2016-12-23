@@ -59,6 +59,10 @@ namespace Engine.Web
             Game.AfterTick();
         }
 
+        public void SetCustomLetterbox(IImage image)
+        {
+
+        }
         public void Timeout(Action callback, int ms)
         {
             Window.SetTimeout(callback, ms);
