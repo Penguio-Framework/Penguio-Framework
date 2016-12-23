@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
+using XnaMediaPlayer = Microsoft.Xna.Framework.Media.MediaPlayer;
 
 namespace Engine.Xna
 {
@@ -36,19 +37,19 @@ namespace Engine.Xna
                 soundEnabled = value;
                 if (soundEnabled)
                 {
-                    MediaPlayer.Volume = preSound;
+                    XnaMediaPlayer.Volume = preSound;
                 }
                 else
                 {
-                    preSound = MediaPlayer.Volume;
-                    MediaPlayer.Volume = 0;
+                    preSound = XnaMediaPlayer.Volume;
+                    XnaMediaPlayer.Volume = 0;
                 }
             }
         }
 
         public XnaClient(IGame game, IClientSettings clientSettings, IUserPreferences userPreferences, ContentManager contentManager)
         {
-            preSound = MediaPlayer.Volume;
+            preSound = XnaMediaPlayer.Volume;
             SoundEnabled =
 #if Mute
                 false
@@ -234,10 +235,10 @@ namespace Engine.Xna
 
         public void PlaySong(ISong isong)
         {
-            MediaPlayer.Stop();
+            XnaMediaPlayer.Stop();
             var song = ((XnaSong)isong).Song;
-            MediaPlayer.IsRepeating = true;
-            MediaPlayer.Play(song);
+            XnaMediaPlayer.IsRepeating = true;
+            XnaMediaPlayer.Play(song);
         }
 
         public ISoundEffect PlaySoundEffect(ISoundEffect isfx, bool repeat = false)
@@ -261,6 +262,7 @@ namespace Engine.Xna
         public ISong CreateSong(string songName, string songPath)
         {
             var se = ContentManager.Load<Song>(songPath);
+            
             return songs[songName] = new XnaSong(se);
         }
 

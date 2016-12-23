@@ -21,9 +21,11 @@ namespace Engine.Xna
                 if(currentInstance.State!=SoundState.Stopped)
                     currentInstance.Stop(true);
             }
+#if !__IOS__
             currentInstance = SoundEffect.CreateInstance();
             currentInstance.IsLooped = repeat;
             currentInstance.Play();
+#endif
         }
 
         public void Stop()
