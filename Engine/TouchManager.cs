@@ -37,7 +37,7 @@ namespace Engine
                 {
                     if (moveCaches.Count == 0)
                     {
-//                        touchCache.Process();
+                        //                        touchCache.Process();
                         removeCaches.Add(touchCache);
                         continue;
                     }
@@ -55,9 +55,9 @@ namespace Engine
                     {
                         foreach (var moveTouchCache in moveCaches)
                         {
-//                            moveTouchCache.Process();
+                            //                            moveTouchCache.Process();
                         }
-//                        touchCache.Process();
+                        //                        touchCache.Process();
                     }
 
                     removeCaches.AddRange(moveCaches);
@@ -67,19 +67,19 @@ namespace Engine
                 {
                     if (now > touchCache.Time)
                     {
-//                        Console.WriteLine(DateTime.Now + "Touch  Cutoff");
+                        //                        Console.WriteLine(DateTime.Now + "Touch  Cutoff");
                         removeCaches.Add(touchCache);
-//                        touchCache.Process();
+                        //                        touchCache.Process();
                     }
                     else
                     {
                         if (touchCache.TouchType == TouchType.TouchDown)
                         {
-//                            Console.WriteLine(DateTime.Now + "Touch Down");
+                            //                            Console.WriteLine(DateTime.Now + "Touch Down");
                             foreach (var touchCach in moveCaches)
                             {
                                 removeCaches.Add(touchCach);
-//                                touchCach.Process();
+                                //                                touchCach.Process();
                             }
 
                             moveCaches.Clear();
@@ -118,6 +118,15 @@ namespace Engine
             touchRects.Add(touchRect);
             return touchRect;
         }
+
+
+        public TouchRect PushClickRect(Point point, IImage image, TouchTrigger touchTrigger, bool center = false)
+        {
+            var touchRect = new TouchRect(point.X, point.Y, image.Width, image.Height, touchTrigger, center);
+            touchRects.Add(touchRect);
+            return touchRect;
+        }
+
 
         public TouchRect PushSwipeRect(TouchRect touchRect)
         {

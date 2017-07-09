@@ -92,21 +92,17 @@ namespace Engine.Web
             //            return sfx;
             return sfx;
         }
-
-        private readonly Dictionary<string, ISoundEffect> soundEffects = new Dictionary<string, ISoundEffect>();
-        private readonly Dictionary<string, ISong> songs = new Dictionary<string, ISong>();
-
-   
+        
 
 
-        public ISoundEffect CreateSoundEffect(string soundName, string soundPath)
+        public ISoundEffect CreateSoundEffect(string soundPath)
         {
             //            var se = ContentManager.Load<SoundEffect>(soundPath);
             //            return soundEffects[soundName] = new XnaSoundEffect(se);
             return null;
         }
 
-        public ISong CreateSong(string songName, string songPath)
+        public ISong CreateSong(string songPath)
         {
             //            var se = ContentManager.Load<Song>(songPath);
             //            return songs[songName] = new XnaSong(se);

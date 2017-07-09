@@ -4,6 +4,7 @@ namespace Engine.Interfaces
     {
         void Init();
         TouchRect PushClickRect(TouchRect touchRect);
+        TouchRect PushClickRect(Point point, IImage touchRect, TouchTrigger touchTrigger, bool center = false);
         TouchRect PushSwipeRect(TouchRect touchRect);
         void RemoveClickRect(TouchRect touchRect);
         void RemoveSwipeRect(TouchRect touchRect);

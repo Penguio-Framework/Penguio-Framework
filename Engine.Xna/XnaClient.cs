@@ -20,8 +20,6 @@ namespace Engine.Xna
         public IClientSettings ClientSettings { get; set; }
         public ContentManager ContentManager { get; set; }
         public DragGestureManager DragDragGestureManager { get; set; }
-        private readonly Dictionary<string, ISoundEffect> soundEffects = new Dictionary<string, ISoundEffect>();
-        private readonly Dictionary<string, ISong> songs = new Dictionary<string, ISong>();
         private bool soundEnabled;
 
         public IUserPreferences UserPreferences { get; private set; }
@@ -139,8 +137,8 @@ namespace Engine.Xna
                             break;
                     }
 
-                    var xnaImage = ((XnaImage)Renderer.GetImage("overlay.arrow"));
-                    overlaySpriteBatch.Draw(xnaImage.Texture, location, null, Microsoft.Xna.Framework.Color.White * distance, angle, new Vector2((float)xnaImage.Center.X, (float)xnaImage.Center.Y), 1, SpriteEffects.None, 1);
+//                    var xnaImage = ((XnaImage)Renderer.GetImage("overlay.arrow"));
+//                    overlaySpriteBatch.Draw(xnaImage.Texture, location, null, Microsoft.Xna.Framework.Color.White * distance, angle, new Vector2((float)xnaImage.Center.X, (float)xnaImage.Center.Y), 1, SpriteEffects.None, 1);
                     overlaySpriteBatch.End();
                 }
             }
@@ -289,17 +287,17 @@ namespace Engine.Xna
 
 
 
-        public ISoundEffect CreateSoundEffect(string soundName, string soundPath)
+        public ISoundEffect CreateSoundEffect(string soundPath)
         {
             var se = ContentManager.Load<SoundEffect>(soundPath);
-            return soundEffects[soundName] = new XnaSoundEffect(se);
+            return new XnaSoundEffect(se);
         }
 
-        public ISong CreateSong(string songName, string songPath)
+        public ISong CreateSong(string songPath)
         {
             var se = ContentManager.Load<Song>(songPath);
             
-            return songs[songName] = new XnaSong(se);
+            return  new XnaSong(se);
         }
 
 

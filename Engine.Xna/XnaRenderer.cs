@@ -128,25 +128,15 @@ namespace Engine.Xna
             layers.Add((XnaLayer) layer);
         }
 
-        public IImage GetImage(string imageName)
+
+        public IImage CreateImage( string imagePath, PointF center = null)
         {
-            return assetCache.GetImage(imageName);
+            return assetCache.CreateImage( imagePath, center);
         }
 
-
-        public IFont GetFont(string fontName)
+        public IFont CreateFont( string fontPath)
         {
-            return assetCache.GetFont(fontName);
-        }
-
-        public IImage CreateImage(string imageName, string imagePath, PointF center = null)
-        {
-            return assetCache.CreateImage(imageName, imagePath, center);
-        }
-
-        public IFont CreateFont(string fontName , string fontPath)
-        {
-            return  assetCache.CreateFont(fontName,  fontPath);
+            return  assetCache.CreateFont(  fontPath);
         }
 
         public void BeginRender()

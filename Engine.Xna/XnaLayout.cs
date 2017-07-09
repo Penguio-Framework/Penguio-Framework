@@ -15,7 +15,7 @@ namespace Engine.Xna
         public XnaLayout(XnaScreen screen, int width, int height)
         {
             Screen = screen;
-            Width = width;
+            Width = width; 
             Height = height;
 
             ScreenOrientation = ScreenOrientation.Vertical;

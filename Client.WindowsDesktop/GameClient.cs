@@ -30,9 +30,6 @@ namespace Client.WindowsGame
             : base()
         {
             graphics = new GraphicsDeviceManager(this);
-
-            graphics.PreferMultiSampling = true;
-            graphics.ApplyChanges();
             var c = new ContentManager(this.Services);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;

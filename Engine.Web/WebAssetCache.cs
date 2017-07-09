@@ -7,38 +7,26 @@ namespace Engine.Web
     public class WebAssetCache
     {
         private readonly IClient client;
-        private readonly Dictionary<string, WebImage> textures;
-        private readonly Dictionary<string, WebSpriteFont> fonts;
 
         public WebAssetCache(IClient client)
         {
             this.client = client;
-            textures = new Dictionary<string, WebImage>();
-            fonts = new Dictionary<string, WebSpriteFont>();
         }
-        public WebImage GetImage(string imageName)
+        public IImage CreateImage( string imagePath, PointF center, Action ready)
         {
-            return textures[imageName];
+            return new WebImage("assets/"+imagePath+".png", center, ready);
         }
-        public IImage CreateImage(string imageName, string imagePath, PointF center, Action ready)
-        {
-            return textures[imageName] = new WebImage("assets/images/"+imagePath+".png", center, ready);
-        }
+        
 
-        public WebSpriteFont GetFont(string fontName)
-        {
-            return fonts[fontName ];
-        }
-
-        public IFont CreateFont(string fontName, string fontPath)
+        public IFont CreateFont(string fontPath)
         {
             var fileName =  "assets/"+fontPath + ".xml";
             fontMetrics j = client.ClientSettings.LoadXmlFile<fontMetrics>(fileName);
 
             var assetName =  fontPath;
-            var font = CreateImage(fontName, "../"+assetName, new PointF(0, 0), () => { });
+            var font = CreateImage( "../"+assetName, new PointF(0, 0), () => { });
 
-            return fonts[fontName] = new WebSpriteFont(font, j);
+            return  new WebSpriteFont(font, j);
         }
     }
 }

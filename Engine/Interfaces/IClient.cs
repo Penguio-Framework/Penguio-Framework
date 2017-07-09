@@ -19,8 +19,8 @@ namespace Engine.Interfaces
         void Interval(Action callback, int ms);
         void PlaySong(ISong isong);
         ISoundEffect PlaySoundEffect(ISoundEffect isfx, bool repeat = false);
-        ISoundEffect CreateSoundEffect(string soundName, string soundPath);
-        ISong CreateSong(string SongName, string SongPath);
+        ISoundEffect CreateSoundEffect( string soundPath);
+        ISong CreateSong(string SongPath);
 
         void DrawLetterbox();
         void SetCustomLetterbox(IImage image);

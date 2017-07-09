@@ -60,30 +60,21 @@ namespace Engine.Web
             layers.Add((WebLayer)layer);
         }
 
-        public IImage GetImage(string imageName)
-        {
-            return assetCache.GetImage(imageName);
-        }
 
         private int numberOfImages;
         private int numberOfImagesLoaded;
         public HTMLDivElement ClickManager { get; set; }
 
-        public IImage CreateImage(string imageName, string imagePath, PointF center = null)
+        public IImage CreateImage(string imagePath, PointF center = null)
         {
             numberOfImages++;
-            return assetCache.CreateImage(imageName, imagePath, center, imagesReady);
+            return assetCache.CreateImage( imagePath, center, imagesReady);
         }
 
-        public IFont CreateFont(string fontName, string fontPath)
+        public IFont CreateFont(string fontPath)
         {
-            return assetCache.CreateFont(fontName, fontPath);
+            return assetCache.CreateFont( fontPath);
 
-        }
-
-        public IFont GetFont(string fontName)
-        {
-            return assetCache.GetFont(fontName);
         }
 
         private bool hasLoaded = false;

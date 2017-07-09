@@ -45,6 +45,7 @@
     <Compile Include="Animation\MotionManager.cs" />
     <Compile Include="Animation\OnRender.cs" />
     <Compile Include="Animation\OnRenderAnimationIndex.cs" />
+    <Compile Include="Animation\FinishMotion.cs" />
     <Compile Include="Animation\WaitMotion.cs" />
     <Compile Include="Color.cs" />
     <Compile Include="EnumerableExtensions.cs" />

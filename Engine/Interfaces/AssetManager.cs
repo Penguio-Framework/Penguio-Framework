@@ -13,69 +13,61 @@ namespace Engine.Interfaces
             Client = client;
         }
 
-        public IImage CreateImage(string image, string imagePath)
+        public IImage CreateImage(string imagePath)
         {
-            return Renderer.CreateImage(image, imagePath);
+            return Renderer.CreateImage(imagePath);
         }
 
-        public ISoundEffect CreateSoundEffect(string soundName, string soundPath)
+        public ISoundEffect CreateSoundEffect(string soundPath)
         {
-            return Client.CreateSoundEffect(soundName, soundPath);
+            return Client.CreateSoundEffect(soundPath);
         }
 
-        public ISong CreateSong(string songName, string songPath)
+        public ISong CreateSong(string songPath)
         {
-            return Client.CreateSong(songName, songPath);
+            return Client.CreateSong(songPath);
         }
 
-        public IEnumerable<IImage> CreateImages(string image, IEnumerable<object> arguments, string imagePath)
+        public Dictionary<int, IImage> CreateImage(string imagePath, int[] arguments)
         {
+            Dictionary<int, IImage> images = new Dictionary<int, IImage>();
+
             foreach (var o in arguments)
             {
-                yield return Renderer.CreateImage(string.Format("{0}.{1}", image, o), string.Format(imagePath, o));
+                images.Add(o, Renderer.CreateImage(string.Format(imagePath, o)));
             }
+            return images;
         }
-
-        public Dictionary<object, IImage> CreateImage(string image, IEnumerable<object> arguments, string imagePath)
+        public Dictionary<int, Dictionary<int, IImage>> CreateImage(string imagePath, int[] outerArgs, int[] innerArgs)
         {
-            Dictionary<object, IImage> images = new Dictionary<object, IImage>();
+            Dictionary<int, Dictionary<int, IImage>> images = new Dictionary<int, Dictionary<int, IImage>>();
 
-            foreach (var o in arguments)
+            foreach (var outer in outerArgs)
             {
-                images.Add(o, Renderer.CreateImage(string.Format("{0}.{1}", image, o), string.Format(imagePath, o)));
+                Dictionary<int, IImage> innerImages = new Dictionary<int, IImage>();
+                foreach (var inner in innerArgs)
+                {
+                    innerImages.Add(inner, Renderer.CreateImage(string.Format(imagePath, outer, inner)));
+                }
+                images.Add(outer, innerImages);
+
 
             }
             return images;
         }
 
-        public IImage GetImage(string image, object argument = null)
+        public IFont CreateFont(string fontPath)
         {
-            if (argument == null)
-            {
-                return Renderer.GetImage(image);
-            }
-            else
-            {
-                return Renderer.GetImage(string.Format("{0}.{1}", image, argument));
-            }
+            return Renderer.CreateFont(fontPath);
         }
-        public IFont GetFont(string image)
-        {
-            return Renderer.GetFont(image);
-
-        }
-        public IFont CreateFont(string fontName, string fontPath)
-        {
-            return Renderer.CreateFont(fontName, fontPath);
-        }
-        public Dictionary<object,IFont> CreateFont(string fontName, IEnumerable<object> arguments, string fontPath)
+        public Dictionary<object, IFont> CreateFont(IEnumerable<object> arguments, string fontPath)
         {
 
             Dictionary<object, IFont> fonts = new Dictionary<object, IFont>();
 
             foreach (var o in arguments)
             {
-                fonts.Add(o, Renderer.CreateFont(string.Format("{0}.{1}", fontName, o), string.Format(fontPath, o)));
+                fonts.Add(o, Renderer.CreateFont(string.Format(fontPath, o)));
 
             }
             return fonts;
