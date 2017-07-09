@@ -9,7 +9,6 @@ namespace Engine.Web
     {
         public WebScreenManager(WebRenderer renderer, BaseClient client)
         {
-
             Renderer = renderer;
             Client = client;
             WebScreens = new List<WebScreen>();
@@ -82,6 +81,25 @@ namespace Engine.Web
         {
             return CurrentScreen.GetLayoutSize();
         }
+
+        public Size DefaultScreenSize { get; set; }
+        public void SetDefaultScreenSize(int width, int height)
+        {
+            DefaultScreenSize = new Size(width, height);
+        }
+
+        public IScreen CreateDefaultScreenLayout(BaseLayoutView layoutView)
+        {
+            var screen = CreateScreen();
+            screen
+                .CreateLayout(DefaultScreenSize.Width, DefaultScreenSize.Height)
+                .MakeActive()
+                .SetScreenOrientation(ScreenOrientation.Vertical)
+                .SetLayout(layoutView);
+            return screen;
+        }
+
+
 
         public void ChangeScreen(IScreen screen)
         {

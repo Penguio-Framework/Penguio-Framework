@@ -13,6 +13,8 @@ namespace Engine.Interfaces
         void TouchEvent(TouchType touchType, int x, int y);
         void Tick(TimeSpan elapsedGameTime);
         Size GetScreenSize();
+        void SetDefaultScreenSize(int width, int height);
+        IScreen CreateDefaultScreenLayout(BaseLayoutView layoutView);
         void ChangeScreen(IScreen screen);
         void Timeout(Action callback, int ms);
         void Interval(Action callback, int ms);

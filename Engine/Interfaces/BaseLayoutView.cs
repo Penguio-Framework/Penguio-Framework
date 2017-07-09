@@ -9,6 +9,9 @@ namespace Engine.Interfaces
         public virtual void TickLayoutView(TimeSpan elapsedGameTime) { }
         public ITouchManager TouchManager { get; set; }
         public BaseLayout Layout { get; set; }
+        public BaseClient Client { get; set; }
+        public IRenderer Renderer { get; set; }
+
         public virtual void Render(TimeSpan elapsedGameTime) { }
         public virtual void Destroy() { }
     }

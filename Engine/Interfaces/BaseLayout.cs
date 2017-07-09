@@ -46,6 +46,8 @@ namespace Engine.Interfaces
             LayoutView = layoutView;
             layoutView.TouchManager = new TouchManager(Screen.ScreenManager.Client);
             layoutView.Layout = this;
+            layoutView.Renderer = Screen.ScreenManager.Client.Game.Renderer;
+            layoutView.Client = Screen.ScreenManager.Client;
             return this;
         }
         public BaseLayout Offset(int x, int y)

@@ -55,15 +55,16 @@ namespace Engine.Xna
         public override void LoadAssets(IRenderer renderer)
         {
             Game.AssetManager = new AssetManager(renderer, this);
-            Game.LoadAssets(renderer);
+            Game.LoadAssets();
         }
 
         public override void Init(IRenderer renderer)
         {
             Renderer = (XnaRenderer)renderer;
+            Game.Renderer = renderer;
             ScreenManager = new XnaScreenManager(Renderer, this);
             Game.ScreenManager = ScreenManager;
-            Game.InitScreens(renderer);
+            Game.InitScreens();
             DragDragGestureManager = new DragGestureManager();
 
             overlaySpriteBatch = new SpriteBatch(Renderer.graphicsDevice);

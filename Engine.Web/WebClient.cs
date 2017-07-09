@@ -25,7 +25,8 @@ namespace Engine.Web
             Renderer = (WebRenderer)renderer;
             ScreenManager = new WebScreenManager(Renderer, this);
             Game.ScreenManager = ScreenManager;
-            Game.InitScreens(renderer);
+            Game.Renderer = Renderer;
+            Game.InitScreens();
 
             /*         SocketManager = new WebSocketManager();
                      Game.InitSocketManager(SocketManager);*/
@@ -116,7 +117,7 @@ namespace Engine.Web
         public override void LoadAssets(IRenderer renderer)
         {
             Game.AssetManager=new AssetManager(renderer,this);
-            Game.LoadAssets(renderer);
+            Game.LoadAssets();
         }
     }
     public class WebClientSettings : IClientSettings
