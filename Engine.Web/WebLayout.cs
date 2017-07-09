@@ -5,17 +5,8 @@ using Engine.Interfaces;
 
 namespace Engine.Web
 {
-    public class WebLayout : ILayout
+    public class WebLayout : BaseLayout
     {
-        public IUIManager UIManager { get; set; }
-        public ILayoutView LayoutView { get; set; }
-        public IScreen Screen { get; set; }
-        public LayoutPosition LayoutPosition { get; set; }
-        public int Width { get; set; }
-        public int Height { get; set; }
-        public ScreenOrientation ScreenOrientation { get; set; }
-        public bool AlwaysTick { get; set; }
-
         public HTMLDivElement Element { get; set; }
         public WebLayout(IScreen screen, int width, int height)
         {
@@ -30,103 +21,6 @@ namespace Engine.Web
 
             UIManager = new WebUIManager(this);
         }
-
-
-        private bool active;
-        public bool Active
-        {
-            get { return active; }
-            set
-            {
-                if (value)
-                {
-                    if (Screen.OneLayoutAtATime)
-                    {
-                        foreach (var layout in Screen.Layouts)
-                        {
-                            layout.Active = false;
-                        }
-                        this.active = true;
-                    }
-                    else
-                    {
-                        active = true;
-                    }
-                }
-                else
-                {
-                    active = false;
-                }
-            }
-        }
-
-        public ILayout Offset(int x, int y)
-        {
-            LayoutPosition.Offset.X = x;
-            LayoutPosition.Offset.Y = y;
-            return this;
-        }
-        public void ForceScreenOrientation(ScreenOrientation orientation)
-        {
-            ScreenOrientation = orientation;
-        }
-
-
-        public ILayout LeftOf(ILayout layout)
-        {
-            LayoutPosition.Right = layout;
-            layout.LayoutPosition.Left = this;
-            return this;
-        }
-
-        public ILayout RightOf(ILayout layout)
-        {
-            LayoutPosition.Left = layout;
-            layout.LayoutPosition.Right = this;
-            return this;
-        }
-
-        public ILayout Above(ILayout layout)
-        {
-            LayoutPosition.Bottom = layout;
-            layout.LayoutPosition.Top = this;
-            return this;
-        }
-
-        public ILayout Below(ILayout layout)
-        {
-            LayoutPosition.Top = layout;
-            layout.LayoutPosition.Bottom = this;
-            return this;
-        }
-
-        public ILayout MakeActive()
-        {
-            Active = true;
-            Screen.ChangeLayout(this);
-            return this;
-        }
-
-        public ILayout ForceTick()
-        {
-            AlwaysTick = true;
-            return this;
-        }
-
-        public ILayout SetScreenOrientation(ScreenOrientation orientation)
-        {
-            ScreenOrientation = orientation;
-            return this;
-        }
-
-        public void ProcessTouchEvent(TouchType touchType, int x, int y)
-        {
-            if (UIManager.ProcessTouchEvent(touchType, x, y))
-            {
-                return;
-            }
-            LayoutView.TouchManager.ProcessTouchEvent(touchType, x, y);
-        }
     }
 
 
@@ -134,7 +28,7 @@ namespace Engine.Web
 
     public class WebUIManager : IUIManager
     {
-        public ILayout Layout { get; set; }
+        public BaseLayout Layout { get; set; }
         public List<IUITextBox> TextBoxes { get; set; }
 
         public WebUIManager(WebLayout webLayout)
@@ -163,7 +57,7 @@ namespace Engine.Web
             return false;
         }
 
-        public IUITextBox CreateTextBox(Rectangle rectangle, ILayoutView layoutView, Action<string> onTextChange = null)
+        public IUITextBox CreateTextBox(Rectangle rectangle, BaseLayoutView layoutView, Action<string> onTextChange = null)
         {
             var webUiTextBox = new WebUITextBox(this, rectangle, layoutView, onTextChange);
             TextBoxes.Add(webUiTextBox);
@@ -182,7 +76,7 @@ namespace Engine.Web
 
     public class WebUITextBox : IUITextBox
     {
-        public WebUITextBox(IUIManager uiManager, Rectangle rectangle, ILayoutView layoutView, Action<string> onTextChange)
+        public WebUITextBox(IUIManager uiManager, Rectangle rectangle, BaseLayoutView layoutView, Action<string> onTextChange)
         {
             UIManager = uiManager;
             Rectangle = rectangle;
@@ -198,7 +92,7 @@ namespace Engine.Web
 
         public Rectangle Rectangle { get; set; }
 
-        public ILayoutView LayoutView { get; set; }
+        public BaseLayoutView LayoutView { get; set; }
 
         public Action<string> OnTextChange { get; set; }
 

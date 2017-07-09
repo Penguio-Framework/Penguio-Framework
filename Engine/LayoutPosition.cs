@@ -13,10 +13,10 @@ namespace Engine
         public Size Size { get; set; }
 
         public Point Offset { get; set; }
-        public ILayout Left { get; set; }
-        public ILayout Right { get; set; }
-        public ILayout Top { get; set; }
-        public ILayout Bottom { get; set; }
+        public BaseLayout Left { get; set; }
+        public BaseLayout Right { get; set; }
+        public BaseLayout Top { get; set; }
+        public BaseLayout Bottom { get; set; }
 
         public Rectangle Location
         {

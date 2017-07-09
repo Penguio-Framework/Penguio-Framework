@@ -5,9 +5,9 @@ namespace Engine.Interfaces
     public class AssetManager
     {
         public IRenderer Renderer { get; set; }
-        public IClient Client { get; set; }
+        public BaseClient Client { get; set; }
 
-        public AssetManager(IRenderer renderer, IClient client)
+        public AssetManager(IRenderer renderer, BaseClient client)
         {
             Renderer = renderer;
             Client = client;

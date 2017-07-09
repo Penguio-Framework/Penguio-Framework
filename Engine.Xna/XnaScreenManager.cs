@@ -6,7 +6,7 @@ namespace Engine.Xna
 {
     public class XnaScreenManager : IScreenManager
     {
-        public XnaScreenManager(XnaRenderer renderer, IClient client)
+        public XnaScreenManager(XnaRenderer renderer, BaseClient client)
         {
             Renderer = renderer;
             Client = client;
@@ -16,7 +16,7 @@ namespace Engine.Xna
         public List<XnaScreen> XnaScreens { get; set; }
 
         public XnaRenderer Renderer { get; set; }
-        public IClient Client { get; set; }
+        public BaseClient Client { get; set; }
 
         public IScreen CreateScreen()
         {

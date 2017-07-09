@@ -43,7 +43,7 @@ namespace Engine.Web
         }
 
 
-        public ILayout CreateLayout(int width, int height)
+        public BaseLayout CreateLayout(int width, int height)
         {
             var xnaLayout = new WebLayout(this, width, height);
             WebLayouts.Add(xnaLayout);
@@ -54,7 +54,7 @@ namespace Engine.Web
 
         protected List<WebLayout> WebLayouts { get; set; }
 
-        public IEnumerable<ILayout> Layouts { get { return WebLayouts; } }
+        public IEnumerable<BaseLayout> Layouts { get { return WebLayouts; } }
 
         public bool OneLayoutAtATime { get; set; }
         public IScreenManager ScreenManager { get; set; }
@@ -212,7 +212,7 @@ namespace Engine.Web
             }
         }
 
-        public void ChangeLayout(ILayout changeTo)
+        public void ChangeLayout(BaseLayout changeTo)
         {
             changeTo.Active = true;
         }

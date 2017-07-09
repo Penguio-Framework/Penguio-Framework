@@ -5,7 +5,7 @@ namespace Engine.Xna
 {
     public class XnaUITextBox : IUITextBox
     {
-        public XnaUITextBox(IUIManager uiManager, Rectangle rectangle, ILayoutView layoutView, Action<string> onTextChange)
+        public XnaUITextBox(IUIManager uiManager, Rectangle rectangle, BaseLayoutView layoutView, Action<string> onTextChange)
         {
             UIManager = uiManager;
             Rectangle = rectangle;
@@ -21,7 +21,7 @@ namespace Engine.Xna
 
         public Rectangle Rectangle { get; set; }
 
-        public ILayoutView LayoutView { get; set; }
+        public BaseLayoutView LayoutView { get; set; }
 
         public Action<string> OnTextChange { get; set; }
 

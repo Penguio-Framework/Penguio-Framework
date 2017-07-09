@@ -12,22 +12,15 @@ using XnaMediaPlayer = Microsoft.Xna.Framework.Media.MediaPlayer;
 
 namespace Engine.Xna
 {
-    public class XnaClient : IClient
+    public class XnaClient : BaseClient
     {
-        public IGame Game { get; set; }
         public XnaRenderer Renderer { get; set; }
-        public IScreenManager ScreenManager { get; set; }
-        public IClientSettings ClientSettings { get; set; }
         public ContentManager ContentManager { get; set; }
-        public DragGestureManager DragDragGestureManager { get; set; }
         private bool soundEnabled;
-
-        public IUserPreferences UserPreferences { get; private set; }
-
 
         private float preSound;
 
-        public bool SoundEnabled
+        public override bool SoundEnabled
         {
             get { return soundEnabled; }
             set
@@ -45,7 +38,7 @@ namespace Engine.Xna
             }
         }
 
-        public XnaClient(IGame game, IClientSettings clientSettings, IUserPreferences userPreferences, ContentManager contentManager)
+        public XnaClient(BaseGame game, IClientSettings clientSettings, IUserPreferences userPreferences, ContentManager contentManager):base(game,clientSettings,userPreferences)
         {
             preSound = XnaMediaPlayer.Volume;
             SoundEnabled =
@@ -55,24 +48,22 @@ namespace Engine.Xna
                 true
 #endif
                 ;
-            ClientSettings = clientSettings;
-            UserPreferences = userPreferences;
             ContentManager = contentManager;
-            Game = game;
             Game.Client = this;
         }
 
-        public void LoadAssets(IRenderer renderer)
+        public override void LoadAssets(IRenderer renderer)
         {
             Game.AssetManager = new AssetManager(renderer, this);
             Game.LoadAssets(renderer);
         }
 
-        public void Init(IRenderer renderer)
+        public override void Init(IRenderer renderer)
         {
             Renderer = (XnaRenderer)renderer;
             ScreenManager = new XnaScreenManager(Renderer, this);
-            Game.InitScreens(renderer, ScreenManager);
+            Game.ScreenManager = ScreenManager;
+            Game.InitScreens(renderer);
             DragDragGestureManager = new DragGestureManager();
 
             overlaySpriteBatch = new SpriteBatch(Renderer.graphicsDevice);
@@ -92,7 +83,7 @@ namespace Engine.Xna
         private SpriteBatch overlaySpriteBatch;
         private SpriteBatch letterboxSpriteBatch;
 
-        public void Draw(TimeSpan elapsedGameTime)
+        public override void Draw(TimeSpan elapsedGameTime)
         {
             Game.BeforeDraw();
             ScreenManager.Draw(elapsedGameTime);
@@ -148,7 +139,7 @@ namespace Engine.Xna
             Game.AfterDraw();
         }
 
-        public void TouchEvent(TouchType touchType, int x, int y)
+        public override void TouchEvent(TouchType touchType, int x, int y)
         {
             var matrix = Renderer.GetScaleMatrix();
 
@@ -184,7 +175,7 @@ namespace Engine.Xna
             ScreenManager.TouchEvent(touchType, x, y);
         }
 
-        public void DrawLetterbox()
+        public override void DrawLetterbox()
         {
             var screenSize = Renderer.GetScreenSize();
             var point = Renderer.GetOffset();
@@ -198,7 +189,7 @@ namespace Engine.Xna
             letterboxSpriteBatch.End();
         }
 
-        public void SetCustomLetterbox(IImage image)
+        public override void SetCustomLetterbox(IImage image)
         {
             var xnaImage = ((XnaImage)image);
             customLetterboxTexture = xnaImage.Texture;
@@ -257,17 +248,17 @@ namespace Engine.Xna
         }
 
 
-        public void Timeout(Action callback, int ms)
+        public override void Timeout(Action callback, int ms)
         {
             ScreenManager.Timeout(callback, ms);
         }
 
-        public void Interval(Action callback, int ms)
+        public override void Interval(Action callback, int ms)
         {
             ScreenManager.Interval(callback, ms);
         }
 
-        public void PlaySong(ISong isong)
+        public override void PlaySong(ISong isong)
         {
             XnaMediaPlayer.Stop();
             var song = ((XnaSong)isong).Song;
@@ -275,7 +266,7 @@ namespace Engine.Xna
             XnaMediaPlayer.Play(song);
         }
 
-        public ISoundEffect PlaySoundEffect(ISoundEffect isfx, bool repeat = false)
+        public override ISoundEffect PlaySoundEffect(ISoundEffect isfx, bool repeat = false)
         {
             var sfx = ((XnaSoundEffect)isfx);
             if (SoundEnabled)
@@ -287,13 +278,13 @@ namespace Engine.Xna
 
 
 
-        public ISoundEffect CreateSoundEffect(string soundPath)
+        public override ISoundEffect CreateSoundEffect(string soundPath)
         {
             var se = ContentManager.Load<SoundEffect>(soundPath);
             return new XnaSoundEffect(se);
         }
 
-        public ISong CreateSong(string songPath)
+        public override ISong CreateSong(string songPath)
         {
             var se = ContentManager.Load<Song>(songPath);
             
@@ -301,7 +292,7 @@ namespace Engine.Xna
         }
 
 
-        public void Tick(TimeSpan elapsedGameTime)
+        public override void Tick(TimeSpan elapsedGameTime)
         {
             Game.BeforeTick();
 

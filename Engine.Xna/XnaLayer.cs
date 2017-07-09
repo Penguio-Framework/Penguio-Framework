@@ -11,10 +11,10 @@ namespace Engine.Xna
         private readonly SpriteBatch currentSpriteBatch;
         private readonly int width;
         private readonly int height;
-        public ILayout Layout { get; set; }
+        public BaseLayout Layout { get; set; }
         private readonly XnaShapeCache shapeCache;
 
-        public XnaLayer(XnaRenderer renderer, int width, int height, ILayout layout)
+        public XnaLayer(XnaRenderer renderer, int width, int height, BaseLayout layout)
         {
             this.renderer = renderer;
             this.width = width;

@@ -10,7 +10,7 @@ namespace Engine.Xna
 {
     public class XnaRenderer : IRenderer
     {
-        public IClient Client { get; set; }
+        public BaseClient Client { get; set; }
         protected internal readonly GraphicsDevice graphicsDevice;
 
         /// todo move content to somewhere better, renderer does way too much
@@ -21,7 +21,7 @@ namespace Engine.Xna
         private readonly List<XnaLayer> layers;
 
 
-        public XnaRenderer(GraphicsDevice graphicsDevice, ContentManager content, GraphicsDeviceManager graphics, IClient client)
+        public XnaRenderer(GraphicsDevice graphicsDevice, ContentManager content, GraphicsDeviceManager graphics, BaseClient client)
         { 
             Client = client;
             this.graphicsDevice = graphicsDevice;
@@ -112,12 +112,12 @@ namespace Engine.Xna
             return sizeMatrix;
         }
 
-        public ILayer CreateLayer(int width, int height, ILayout layout)
+        public ILayer CreateLayer(int width, int height, BaseLayout layout)
         {
             return new XnaLayer(this, width, height, layout);
         }
 
-        public ILayer CreateLayer(ILayout layout)
+        public ILayer CreateLayer(BaseLayout layout)
         {
             return new XnaLayer(this, layout.Width, layout.Height, layout);
         }

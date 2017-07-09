@@ -7,13 +7,11 @@ namespace Engine
 {
     public class TouchManager : ITouchManager
     {
-        private readonly IClient _client;
         public List<TouchRect> touchRects { get; set; }
         public List<TouchRect> swipeRects { get; set; }
 
-        public TouchManager(IClient client)
+        public TouchManager(BaseClient client)
         {
-            _client = client;
             touchRects = new List<TouchRect>();
             swipeRects = new List<TouchRect>();
 

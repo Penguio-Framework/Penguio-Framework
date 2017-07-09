@@ -42,12 +42,12 @@ namespace Engine.Web
             Document.Body.AppendChild(ClickManager);
         }
 
-        public ILayer CreateLayer(int width, int height, ILayout layout)
+        public ILayer CreateLayer(int width, int height, BaseLayout layout)
         {
             return new WebLayer(this, width, height, layout);
         }
 
-        public ILayer CreateLayer(ILayout layout)
+        public ILayer CreateLayer(BaseLayout layout)
         {
             return new WebLayer(this, layout.Width, layout.Height, layout);
 

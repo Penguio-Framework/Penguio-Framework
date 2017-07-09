@@ -6,9 +6,9 @@ namespace Engine.Web
 {
     public class WebAssetCache
     {
-        private readonly IClient client;
+        private readonly BaseClient client;
 
-        public WebAssetCache(IClient client)
+        public WebAssetCache(BaseClient client)
         {
             this.client = client;
         }

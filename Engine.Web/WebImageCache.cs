@@ -6,11 +6,11 @@ namespace Engine.Web
 {
     public class WebImageCache
     {
-        private readonly IClient client;
+        private readonly BaseClient client;
         private readonly Dictionary<string, WebImage> textures;
         private readonly Dictionary<string, WebSpriteFont> fonts;
 
-        public WebImageCache(IClient client)
+        public WebImageCache(BaseClient client)
         {
             this.client = client;
             textures = new Dictionary<string, WebImage>();

@@ -5,8 +5,8 @@ namespace Engine.Interfaces
 {
     public interface IScreen
     {
-        ILayout CreateLayout(int width, int height);
-        IEnumerable<ILayout> Layouts { get; }
+        BaseLayout CreateLayout(int width, int height);
+        IEnumerable<BaseLayout> Layouts { get; }
         bool OneLayoutAtATime { get; set; }
         IScreenManager ScreenManager { get; set; }
         void Init();
@@ -16,7 +16,7 @@ namespace Engine.Interfaces
         Size GetLayoutSize();
         bool HasLayout(Direction direction);
         void ChangeLayout(Direction direction);
-        void ChangeLayout(ILayout layout);
+        void ChangeLayout(BaseLayout layout);
 
 
         void Destroy();

@@ -34,7 +34,7 @@ namespace Engine.Xna
         }
 
 
-        public ILayout CreateLayout(int width, int height)
+        public BaseLayout CreateLayout(int width, int height)
         {
             var xnaLayout = new XnaLayout(this, width, height);
             XnaLayouts.Add(xnaLayout);
@@ -44,7 +44,7 @@ namespace Engine.Xna
 
         protected List<XnaLayout> XnaLayouts { get; set; }
 
-        public IEnumerable<ILayout> Layouts
+        public IEnumerable<BaseLayout> Layouts
         {
             get { return XnaLayouts; }
         }
@@ -187,14 +187,14 @@ namespace Engine.Xna
             }
         }
 
-        public void ChangeLayout(ILayout changeTo)
+        public void ChangeLayout(BaseLayout changeTo)
         {
             changeTo.Active = true;
             ((XnaScreenManager) ScreenManager).Renderer.graphics.SupportedOrientations = SupportedOrientations(changeTo);
             ((XnaScreenManager) ScreenManager).Renderer.graphics.ApplyChanges();
         }
 
-        private static DisplayOrientation SupportedOrientations(ILayout changeTo)
+        private static DisplayOrientation SupportedOrientations(BaseLayout changeTo)
         {
             switch (changeTo.ScreenOrientation)
             {

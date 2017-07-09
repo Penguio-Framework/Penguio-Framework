@@ -6,7 +6,7 @@ namespace Engine.Xna
 {
     public class XnaUIManager : IUIManager
     {
-        public ILayout Layout { get; set; }
+        public BaseLayout Layout { get; set; }
         public List<IUITextBox> TextBoxes { get; set; }
 
         public XnaUIManager(XnaLayout xnaLayout)
@@ -34,7 +34,7 @@ namespace Engine.Xna
             return false;
         }
 
-        public IUITextBox CreateTextBox(Rectangle rectangle, ILayoutView layoutView, Action<string> onTextChange = null)
+        public IUITextBox CreateTextBox(Rectangle rectangle, BaseLayoutView layoutView, Action<string> onTextChange = null)
         {
             var xnaUiTextBox = new XnaUITextBox(this, rectangle, layoutView, onTextChange);
             TextBoxes.Add(xnaUiTextBox);

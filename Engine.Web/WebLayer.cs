@@ -10,10 +10,10 @@ namespace Engine.Web
         private readonly WebRenderer renderer;
         private readonly int width;
         private readonly int height;
-        public ILayout Layout { get; set; }
+        public BaseLayout Layout { get; set; }
 
         public CanvasInformation CanvasInformation { get; set; }
-        public WebLayer(WebRenderer renderer, int width, int height, ILayout layout)
+        public WebLayer(WebRenderer renderer, int width, int height, BaseLayout layout)
         {
             this.renderer = renderer;
             this.width = width;

@@ -7,7 +7,7 @@ namespace Engine.Web
 {
     public class WebScreenManager : IScreenManager
     {
-        public WebScreenManager(WebRenderer renderer, IClient client)
+        public WebScreenManager(WebRenderer renderer, BaseClient client)
         {
 
             Renderer = renderer;
@@ -18,7 +18,7 @@ namespace Engine.Web
         public List<WebScreen> WebScreens { get; set; }
 
         public WebRenderer Renderer { get; set; }
-        public IClient Client { get; set; }
+        public BaseClient Client { get; set; }
         public bool OneLayoutAtATime { get; set; }
 
         public IScreen CreateScreen()

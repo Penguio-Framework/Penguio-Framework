@@ -9,9 +9,9 @@ namespace Engine.Xna
     public class XnaAssetCache
     {
         private readonly ContentManager content;
-        private readonly IClient client;
+        private readonly BaseClient client;
 
-        public XnaAssetCache(ContentManager content, IClient client)
+        public XnaAssetCache(ContentManager content, BaseClient client)
         {
             this.content = content;
             this.client = client;

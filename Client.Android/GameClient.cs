@@ -32,7 +32,7 @@ namespace Client.Android
         public AssetManager Assets { get; set; }
         public Bundle Bundle { get; set; }
         private GraphicsDeviceManager graphics;
-        private IClient client;
+        private BaseClient client;
         private IRenderer renderer;
 
 

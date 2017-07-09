@@ -4,7 +4,7 @@ namespace Engine.Interfaces
 {
     public interface ILayer
     {
-        ILayout Layout { get; set; }
+        BaseLayout Layout { get; set; }
         void Save();
         void Restore();
         void Translate(PointF point);

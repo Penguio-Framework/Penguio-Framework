@@ -23,7 +23,7 @@ namespace Client.WindowsGame
     {
         SpriteBatch spriteBatch;
         GraphicsDeviceManager graphics;
-        private IClient client;
+        private BaseClient client;
         private IRenderer renderer;
 
         public GameClient()

@@ -54,13 +54,13 @@
     <Compile Include="Interfaces\DragGesture.cs" />
     <Compile Include="Interfaces\DragGestureManager.cs" />
     <Compile Include="Interfaces\DrawingEffects.cs" />
-    <Compile Include="Interfaces\IClient.cs" />
+    <Compile Include="Interfaces\BaseClient.cs" />
     <Compile Include="Interfaces\IClientSettings.cs" />
-    <Compile Include="Interfaces\IGame.cs" />
+    <Compile Include="Interfaces\BaseGame.cs" />
     <Compile Include="Interfaces\IImage.cs" />
     <Compile Include="Interfaces\ILayer.cs" />
-    <Compile Include="Interfaces\ILayout.cs" />
-    <Compile Include="Interfaces\ILayoutView.cs" />
+    <Compile Include="Interfaces\BaseLayout.cs" />
+    <Compile Include="Interfaces\BaseLayoutView.cs" />
     <Compile Include="Interfaces\IRenderer.cs" />
     <Compile Include="Interfaces\IScreen.cs" />
     <Compile Include="Interfaces\IScreenManager.cs" />

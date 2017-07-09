@@ -7,51 +7,44 @@ using Engine.Interfaces;
 
 namespace Engine.Web
 {
-    public class WebClient : IClient
+    public class WebClient : BaseClient
     {
-        public IScreenManager ScreenManager { get; set; }
         public ISocketManager SocketManager { get; set; }
-        public IClientSettings ClientSettings { get; set; }
-        public DragGestureManager DragDragGestureManager { get; set; }
-        public bool SoundEnabled { get; set; }
+        public override bool SoundEnabled { get; set; }
 
-
-        public IGame Game { get; set; }
         public WebRenderer Renderer { get; set; }
 
-        public WebClient(IGame game, IClientSettings clientSettings, IUserPreferences userPreferences)
+        public WebClient(BaseGame game, IClientSettings clientSettings, IUserPreferences userPreferences):base(game,clientSettings,userPreferences)
         {
-            Game = game;
-            ClientSettings = clientSettings;
-            UserPreferences = userPreferences;
             Game.Client = this;
-
         }
-        public void Init(IRenderer renderer)
+
+        public override void Init(IRenderer renderer)
         {
 
             Renderer = (WebRenderer)renderer;
             ScreenManager = new WebScreenManager(Renderer, this);
-            Game.InitScreens(renderer, ScreenManager);
+            Game.ScreenManager = ScreenManager;
+            Game.InitScreens(renderer);
 
             /*         SocketManager = new WebSocketManager();
                      Game.InitSocketManager(SocketManager);*/
         }
 
 
-        public void Draw(TimeSpan elapsedGameTime)
+        public override void Draw(TimeSpan elapsedGameTime)
         {
             Game.BeforeDraw();
             ScreenManager.Draw(elapsedGameTime);
             Game.AfterDraw();
         }
 
-        public void TouchEvent(TouchType touchType, int x, int y)
+        public override void TouchEvent(TouchType touchType, int x, int y)
         {
             ScreenManager.TouchEvent(touchType, x, y);
         }
 
-        public void Tick(TimeSpan elapsedGameTime)
+        public override void Tick(TimeSpan elapsedGameTime)
         {
             Game.BeforeTick();
 
@@ -59,21 +52,21 @@ namespace Engine.Web
             Game.AfterTick();
         }
 
-        public void SetCustomLetterbox(IImage image)
+        public override void SetCustomLetterbox(IImage image)
         {
 
         }
-        public void Timeout(Action callback, int ms)
+        public override void Timeout(Action callback, int ms)
         {
             Window.SetTimeout(callback, ms);
         }
 
-        public void Interval(Action callback, int ms)
+        public override void Interval(Action callback, int ms)
         {
             Window.SetInterval(callback, ms);
         }
 
-        public void PlaySong(ISong isong)
+        public override void PlaySong(ISong isong)
         {
             //            MediaPlayer.Stop();
             //            var song = ((XnaSong)songs[songName]).Song;
@@ -81,7 +74,7 @@ namespace Engine.Web
             //            MediaPlayer.Play(song);
         }
 
-        public ISoundEffect PlaySoundEffect(ISoundEffect sfx, bool repeat = false)
+        public override ISoundEffect PlaySoundEffect(ISoundEffect sfx, bool repeat = false)
         {
 
             //            var sfx = ((XnaSoundEffect)soundEffects[soundEffectName]);
@@ -95,14 +88,14 @@ namespace Engine.Web
         
 
 
-        public ISoundEffect CreateSoundEffect(string soundPath)
+        public override ISoundEffect CreateSoundEffect(string soundPath)
         {
             //            var se = ContentManager.Load<SoundEffect>(soundPath);
             //            return soundEffects[soundName] = new XnaSoundEffect(se);
             return null;
         }
 
-        public ISong CreateSong(string songPath)
+        public override ISong CreateSong(string songPath)
         {
             //            var se = ContentManager.Load<Song>(songPath);
             //            return songs[songName] = new XnaSong(se);
@@ -110,7 +103,7 @@ namespace Engine.Web
         }
 
 
-        public void DrawLetterbox()
+        public override void DrawLetterbox()
         {
             //            throw new NotImplementedException();
         }
@@ -120,9 +113,7 @@ namespace Engine.Web
             //            throw new NotImplementedException();
         }
 
-        public IUserPreferences UserPreferences { get; private set; }
-
-        public void LoadAssets(IRenderer renderer)
+        public override void LoadAssets(IRenderer renderer)
         {
             Game.AssetManager=new AssetManager(renderer,this);
             Game.LoadAssets(renderer);
